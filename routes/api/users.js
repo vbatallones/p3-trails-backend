@@ -6,15 +6,18 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const JWT_SECRET = process.env.JWT_SECRET;
-console.log(process.env);
+// console.log(process.env);
 // Load User model
 // const User = require('../../models/User');
 const db = require('../../models');
 
-// GET api/users/test (Public)
-router.get('/test', (req, res) => {
-  res.json({ msg: 'User endpoint OK'});
-});
+//index
+router.get('/', (req, res) => {
+  db.User.find().then(users => {
+    res.status(200).json(users)
+  }).catch(err => res.status(500).json({error: err}))
+})
+
 
 // POST api/users/register (Public)
 router.post('/register', (req, res) => {
@@ -47,6 +50,7 @@ router.post('/register', (req, res) => {
     }
   })
 });
+
 
 // POST api/users/login (Public)
 router.post('/login', (req, res) => {
@@ -82,6 +86,7 @@ router.post('/login', (req, res) => {
     }
   });
 });
+
 
 // GET api/users/current (Private)
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {

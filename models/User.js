@@ -33,7 +33,6 @@ const UserSchema = new Schema({
 	userTrails: [ {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Trail',
-        //5f56903a064669eff27e971c
 	} ]
 });
 
