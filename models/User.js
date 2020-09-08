@@ -18,18 +18,18 @@ const UserSchema = new Schema({
 		type: String,
 		default: 'hiker001',
 	},
-	// longitude: {
-	// 	type: Number,
-	// 	// required: true,
-	// },
-	// latitude: {
-	// 	type: Number,
-	// 	// required: true,
-	// },
-	// radiusTrail: {
-	// 	type: Number,
-	// 	// required: true,
-	// },
+	longitude: {
+		type: Number,
+		default: 122.3321
+	},
+	latitude: {
+		type: Number,
+		default: 47.6062
+	},
+	radiusTrail: {
+		type: Number,
+		default: 10
+	},
 	userTrails: [ {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Trail',
