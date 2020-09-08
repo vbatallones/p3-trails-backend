@@ -72,7 +72,11 @@ router.post('/login', (req, res) => {
           const payload = {
             id: user.id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            displayName: user.displayName,
+            longitude: user.longitude,
+            latitude: user.latitude,
+            radiusTrail: user.radiusTrail
           };
 
           // Sign token
