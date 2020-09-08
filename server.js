@@ -6,14 +6,14 @@ const port = process.env.PORT || 8000;
 const passport = require('passport');
 
 const users = require('./routes/api/users')
-const trails = require('./routes/api/trails')
+const trails = require('./routes/trails')
 const usertrails = require('./routes/api/usertrails')
 // middleware
 app.use(cors());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 app.use('/api/users', users)
-app.use('/api/trails', trails)
+app.use('/trails', trails)
 app.use('/api/usertrails', usertrails)
 
 // passport middleware
