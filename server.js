@@ -6,10 +6,15 @@ const port = process.env.PORT || 8000;
 const passport = require('passport');
 
 const users = require('./routes/api/users')
+const trails = require('./routes/api/trails')
+const usertrails = require('./routes/api/usertrails')
 // middleware
 app.use(cors());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
+app.use('/api/users', users)
+app.use('/api/trails', trails)
+app.use('/api/usertrails', usertrails)
 
 // passport middleware
 app.use(passport.initialize());
@@ -22,7 +27,6 @@ app.get('/', (req, res) => {
     res.status(200).json({ message: "smile, your being watch from the backend team"})
 });
 
-app.use('/api/users', users)
 
 app.listen(port, () => {
     console.log(`server is running on port ${port}`)
