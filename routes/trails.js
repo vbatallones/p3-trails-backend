@@ -14,11 +14,34 @@ router.get('/:id', (req, res) => {
 
 // Create
 router.post('/create', (req, res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     db.Trail.create(req.body)
     .then(newTrail => {
+        console.log('this is the user🤯')
+        console.log(req.User)
         console.log(newTrail)
-        res.status(201).send(newTrail)
+        // res.status(201).send(newTrail)
+        db.User.findByIdAndUpdate( "5f57d39c162cd989debd883b",
+            {$addToSet: { userTrails: newTrail}},
+            {safe: true}
+        )
+        .then((updated)=>res.send(updated))
+        .catch(err=>res.send({ message: 'Error in adding newTrail to user', err}));
+
+        // .then(userRef => {
+        //     db.User.findOne({
+        //         email: currentUser.email
+        //     })
+        //     .then(currUser => {
+        //         const newTrail = new db.User({
+        //              userTrails: req.body.trails._id
+        //         })
+
+        //     })
+        //     .catch(err => console.log("error", err))
+
+        // })
+        // .catch(err => console.log("error", err))
     })
     .catch(err=>{
         console.log('Error while creating', err)

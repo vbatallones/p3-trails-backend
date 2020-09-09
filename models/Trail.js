@@ -6,6 +6,7 @@ const TrailSchema =new Schema ({
         type: String,
         require: true
     }
+
 })
 
 module.exports = Trail = mongoose.model('Trail', TrailSchema)

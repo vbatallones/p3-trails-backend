@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     },
     latitude: {
         type: Number,
-        default: 47.6062,
+        default: 47.6062
     },
     radiusTrail: {
         type: Number,
@@ -32,7 +32,7 @@ const UserSchema = new Schema({
     },
     userTrails: [ {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Trail',
+        ref: 'Trail'
     } ]
 });
 
