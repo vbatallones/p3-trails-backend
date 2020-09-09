@@ -14,14 +14,14 @@ router.get('/:id', (req, res) => {
 
 // Create
 router.post('/create', (req, res)=>{
-    // console.log(req.body)
-    db.Trail.create(req.body)
+    console.log(req.body)
+    db.Trail.create({name:req.body.name})
     .then(newTrail => {
         console.log('this is the user🤯')
         console.log("this is the body🥵", req.body)
         console.log(newTrail)
         // res.status(201).send(newTrail)
-        db.User.findByIdAndUpdate( req.body.currentUser._id, //req.body.currentUser
+        db.User.findByIdAndUpdate(req.body.user.id, //req.body.currentUser
             {$addToSet: { userTrails: newTrail}},
             {safe: true}
         )
@@ -40,6 +40,23 @@ router.post('/create', (req, res)=>{
     // res.send('You\'ve hit the POST /bounties route!')
 })
 
+// router.put('/:id', (req, res)=>{
+//     db.User.findOneAndUpdate({
+//         _id: req.params.id
+//     },
+//     req.body,
+//     {
+//         new: true
+//     })
+//     .then(updatedUser=>{
+//         res.send(updatedUser)
+//     })
+//     .catch(err=>{
+//         console.log(err)
+//         res.status(503).send({message: 'Server Error'})
+//     })
+//     // res.send('You\'ve hit the PUT /bounties/:id route!')
+// })
 
 
 module.exports = router;
