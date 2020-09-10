@@ -30,10 +30,11 @@ const UserSchema = new Schema({
         type: Number,
         default: 10
     },
-    userTrails: [ {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Trail'
-    } ]
-});
+    // userTrails: [ {
+    //     type: mongoose.Schema.Types.String,
+    //     ref: 'Trail'
+    // } ]
+    userTrails: Array
+})
 
 module.exports = User = mongoose.model('User', UserSchema);
