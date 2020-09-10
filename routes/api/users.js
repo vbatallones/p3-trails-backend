@@ -131,4 +131,12 @@ router.post('/profile/get', (req, res) =>{
   )
 })
 
+router.get('/:id', (req, res) => {
+  db.User.findById(req.params.id)
+      .then((trail) => {
+          res.status(200).json(trail);
+      })
+      .catch((err) => res.status(500).json({ error: err }));
+});
+
 module.exports = router;
