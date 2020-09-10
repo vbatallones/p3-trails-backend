@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
@@ -40,21 +41,34 @@ router.post('/createtrail', (req, res) => {
     .then(user=>{
         console.log(user)
         let foundUser = user
-        db.Trail.findOne({ name: req.body.name })
+        db.User.findOne({ userTrails: {name: req.body.name} })
+        // foundUser.userTrails.includes(req.body.name)
         .then(newTrail=>{
-            console.log(newTrail)
+            let favedTrail = {name: req.body.name}
             if(!newTrail){
-                db.Trail.create({ name: req.body.name })
-                .then(trail=>{
-                    foundUser.userTrails.push(trail)
-                    foundUser.save()
-                })
-                .catch(err => console.log("error1", err))
-            }
-            else{
-                foundUser.userTrails.push(newTrail)
+                console.log("created newTrail")
+                console.log(favedTrail)
+                foundUser.userTrails.push(favedTrail)
                 foundUser.save()
+                
+                res.send(user)
+                
+            } else {
+                console.log("trail in userTrails")
             }
+            // console.log(newTrail)
+            // if(!newTrail){
+            //     // db.Trail.create({ name: req.body.name })
+            //     // .then(trail=>{
+            //         foundUser.userTrails.push(trail)
+            //         foundUser.save()
+            //     // })
+            //     // .catch(err => console.log("error1", err))
+            // }
+            // else{
+            //     // foundUser.userTrails.push(newTrail)
+            //     // foundUser.save()
+            // }
         })
         .catch(err => console.log("error2", err))
 

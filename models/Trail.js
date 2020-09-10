@@ -5,6 +5,10 @@ const TrailSchema =new Schema ({
     name: {
         type: String,
         require: true
+    },
+    apiId: {
+        type: Number,
+        require: true
     }
 
 })
