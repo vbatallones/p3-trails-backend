@@ -34,7 +34,8 @@ const UserSchema = new Schema({
     //     type: mongoose.Schema.Types.String,
     //     ref: 'Trail'
     // } ]
-    userTrails: Array
+    userTrails: Array,
+    // image: String
 })
 
 module.exports = User = mongoose.model('User', UserSchema);
