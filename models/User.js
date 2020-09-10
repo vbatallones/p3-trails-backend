@@ -20,7 +20,7 @@ const UserSchema = new Schema({
     },
     longitude: {
         type: Number,
-        default: 122.3321
+        default: -122.3321
     },
     latitude: {
         type: Number,
