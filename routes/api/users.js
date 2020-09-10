@@ -96,4 +96,39 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
   });
 });
 
+//POST api/users/update
+router.post('/profile', (req,res) =>{
+  console.log(req.body)
+  db.User.findByIdAndUpdate(
+    {_id: req.body.user},
+    {longitude: req.body.long,
+    latitude: req.body.lat,
+    radiusTrail: req.body.dis},
+    function(err, result) {
+      if(err) {
+        res.send(err);
+      } else {
+        console.log(result);
+        res.send(result);
+      }
+    }
+  )
+})
+
+//GET api/users/profile
+router.post('/profile/get', (req, res) =>{
+  console.log("where's the data", req.body._id)
+  db.User.findById(
+    {_id: req.body._id},
+    function(err, result) {
+      if(err) {
+        res.send(err);
+      } else {
+        console.log('This is the result', result);
+        res.send(result);
+      }
+    }
+  )
+})
+
 module.exports = router;
