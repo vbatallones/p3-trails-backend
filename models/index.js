@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // mongo connection
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/schemaTest', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
